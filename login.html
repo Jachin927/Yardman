@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+<body>
+    <a href="index.html" id="logo"></a>
+    <div class="panel-lite">
+        <h4>登录</h4>
+        <form id="login-form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username" required>
+                <label class="form-label">用户名</label>
+                <span style="color: red;font-size: 12px;display: none;">账号不能为空！</span>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" required>
+                <label class="form-label">密 码</label>
+                <span style="color: red;font-size: 12px;display: none;">密码不能为空！</span>
+            </div>
+            <input type="button" value="登录" class="submit">
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/login.js"></script>

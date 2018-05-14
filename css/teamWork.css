@@ -1,0 +1,222 @@
+*{margin: 0;padding: 0;}
+ul,li{list-style: none;}
+a{text-decoration: none;}
+body,html{
+	width: 100%;
+	min-width: 1920px;
+	height: 100%;
+	background-image: url(../images/teamWork/bg.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	overflow: auto;
+	display: flex;
+	font-family: AdobeHeitiStd-Regular;
+}
+#logo{
+	width: 47px;
+	height: 42px;
+	position: fixed;
+	top: 32px;
+	left: 47px;
+}
+#logo img{
+	width: 100%;
+}
+#user{
+	width: 44px;
+	height: 46px;
+	border-radius: 50%;
+	overflow: hidden;
+	position: fixed;
+	right: 48px;
+	top: 30px;
+}
+#content{
+	width: 1200px;
+	height: 770px;
+	margin: auto;
+}
+.category{
+	width: 510px;
+	height: 43px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+.category li{
+	width: 140px;
+	height: 43px;
+	background-color: #fff;
+	border-radius: 3px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.category li i{
+	width: 22px;
+	height: 22px;
+	background-repeat: no-repeat;
+	margin-right: 13px;
+	overflow: hidden;
+}
+.kz{
+	background-image: url(../images/teamWork/icon/CoolWeb-icon.png);
+	background-position-y: 4px;
+}
+.ps{
+	background-image: url(../images/teamWork/icon/designr-icon.png);
+}
+.dh{
+	background-image: url(../images/teamWork/icon/animation-icon.png);
+}
+.category li:hover{
+	background-color: #fa6d39;
+}
+.category li:hover i{
+	background-position-y: -26px;
+}
+.category li span{
+	font-family: AdobeHeitiStd;
+	font-size: 14px;
+	color: #696969;
+}
+.category li:hover span{
+	color: #fff;
+}
+.category .category_on {
+	background-color: #fa6d39;
+}
+.category .category_on i{
+	background-position-y: -26px;
+}
+.category .category_on span{
+	color: #fff;
+}
+.works{
+	width: 100%;
+	font-size: 14px;
+	margin: 21px 0;
+	height: 14px;
+}
+.works li{
+	color: #3ABAE9;
+	cursor: pointer;
+	float: left;
+}
+.works>i{
+	float: right;
+	font-size: 12px;
+	font-style: normal;
+	color: #b8b8b8;
+}
+.worksList{
+	width: 100%;
+	height: 616px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.worksList li{
+	width: 264px;
+	height: 275px;
+	cursor: pointer;
+}
+.worksList_shang{
+	width: 100%;
+	height: 155px;
+	overflow: hidden;
+}
+.worksList_shang img{
+	width: 100%;
+	height: 100%;
+}
+.worksList_zhong{
+	height: 55px;
+	background-color: #fff;
+	padding: 10px 20px;
+}
+.worksList_zhong i{
+	margin-right: 25px;
+	font-size: 12px;
+	vertical-align: middle;
+	color: #b8b8b8;
+}
+.worksList_zhong span{
+	display: inline-block;
+	background-repeat: no-repeat;
+	margin-right: 4px;
+}
+.look{
+	width: 18px;
+	height: 12px;
+	background-image: url(../images/teamWork/icon/watch-icon.png);
+}
+.comments{
+	width: 14px;
+	height: 14px;
+	background-image: url(../images/teamWork/icon/comment-icon.png);
+
+}
+.praise{
+	width: 16px;
+	height: 14px;
+	background-image: url(../images/teamWork/icon/like-icon.png);
+}
+.worksList_zhong h3{
+	width: 100%;
+	font-size: 14px;
+	color: #696969;
+	line-height: 40px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.worksList_xia{
+	padding: 10px 20px;
+	height: 26px;
+	color: #696969;
+	display: flex;
+	justify-content: center;
+	font-size: 12px;
+	line-height: 26px;
+	background-color: #f4f4f4;
+}
+.worksList_xia>div{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-right: 10px;
+}
+.worksList_xia>div img{
+	width: 100%;
+	height: 100%;
+}
+.worksList_xia p{
+	width: 120px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.pager{
+	width: 78px;
+	height: 30px;
+	display: flex;
+	float: right;
+	justify-content: space-between;
+}
+.btn{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: #cfcfcf;
+	display: flex;
+}
+.btn img{
+	margin: auto;
+}
+
+
+
+
