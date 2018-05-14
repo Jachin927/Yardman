@@ -880,7 +880,6 @@ h1 img, h2 img{
 	background-image: url('../images/login/icon-exit.png');
 	animation: toggle_third .35s .4s forwards;
 }
-
 @keyframes toggle_one{
 	from{left: 0;opacity: 0;}
 	to{left: -76px;opacity: 1;}

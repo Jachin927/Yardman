@@ -98,22 +98,21 @@ timer = setInterval('create_leaf()', 2000);
 create_leaf();
 
 // 检测登录状态
-let ip = 'http://muma.webgz.cn/';
+let ip = 'http://10.21.40.246/muma.php';
 let token = localStorage.getItem('token');
 let show = false;
 
 if(token){
-	$.ajax({
-		url: ip + 'muma/index.php/logged',
-		type: 'POST',
-		data: {token: token},
-		dataType: 'jsonp',
-		success: function(data){
-			$('#login_btn').css('backgroundImage', 'url(' + data.face + ')');
-			show = true;
-			showMe();
-		}
-	});
+	fetch(`${ip}/usr/logged?token=${token}`)
+	.then((response) => {
+		response.json().then((data) => {
+			if(data.code == 200){
+				$('#login_btn').css('backgroundImage', 'url(' + data.data.face + ')');
+				show = true;
+				showMe();
+			}
+		})
+	})
 }
 
 // 登录显示功能
@@ -134,31 +133,34 @@ function showMe(){
 		}else if(index == 1){
 			window.location.href = 'task.html';
 		}else if(index == 2){
-			localStorage.clear();
+			localStorage.removeItem('token');
 			$('#login_btn').trigger('click');
-			$('#login_btn').css('backgroundImage', 'url("../images/login/login.png")');
+			$('#login_btn').css('backgroundImage', '');
 			show = false;
 		}
 	});
 }
 
 // 获取成员信息
-$.ajax({
-	url: ip + 'muma/index.php/index',
-	dataType: 'jsonp',
-	success: function(data){
-		for(var i = 0; i < data.length; i++){
-			$('#list_banner li img').eq(i).attr('src', data[i].face);
-			$('#list_banner li p').eq(i).text(data[i].nickname);
-			$('#frames img').eq(i).attr('src', data[i].face);
+fetch(`${ip}/members`)
+.then((response) => {
+	response.json().then((data) => {
+		if(data.code == 200){
+			for(var i = 0; i < data.data.length; i++){
+				$('#list_banner li a').eq(i).attr('href', `Member.html?uid=${data.data[i].uid}`);
+				$('#list_banner li img').eq(i).attr('src', data.data[i].face);
+				$('#list_banner li p').eq(i).text(data.data[i].nickname);
+				$('#frames img').eq(i).attr('src', data.data[i].face);
+			}
+			j = -1;
+			for(var i = 3; i >= 1; i--){
+				$('#list_banner li a').eq(j).attr('href', `Member.html?uid=${data.data[i - 1].uid}`);
+				$('#list_banner li img').eq(j).attr('src', data.data[i - 1].face);
+				$('#list_banner li p').eq(j).text(data.data[i - 1].nickname);
+				j--;
+			}
 		}
-		j = -1;
-		for(var i = 3; i >= 1; i--){
-			$('#list_banner li img').eq(j).attr('src', data[i - 1].face);
-			$('#list_banner li p').eq(j).text(data[i - 1].nickname);
-			j--;
-		}
-	}
+	})
 });
 
 
@@ -230,6 +232,7 @@ $('#list_banner li').hover(function(){
 }, function(){
 	banner_timer = setInterval(move, time);
 });
+
 // 作品页跳转sessionStorage储存传参
 $('#team_work_in').on('click','li',function(){
 	sessionStorage.setItem('TeamWorkNum',$(this).index())
