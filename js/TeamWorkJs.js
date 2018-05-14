@@ -9,7 +9,7 @@ if(token){
 	.then((response) => {
 		response.json().then((data) => {
 			if(data.code == 200){
-				$('#login_btn').css('backgroundImage', 'url(' + data.data.face + ')');
+				$('#login_btn').css('backgroundImage', `url(${imgIP}${data.data.face})`);
 				show = true;
 				showMe();
 			}
@@ -107,7 +107,7 @@ function item(data, url){
 				</div>
 				<div class="worksList_xia">
 					<div>
-						<img src="${v.face}">
+						<img src="${imgIP}${v.face}">
 					</div>
 						<p>${v.nickname}</p>
 					<span>${v.name}</span>
