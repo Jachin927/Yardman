@@ -110,14 +110,14 @@ if(token){
 			if(data.code == 200){
 				$('#login_btn').css('backgroundImage', `url(${imgUrl}/${data.data.face})`);
 				show = true;
-				showMe();
+				showMe(data.data.id);
 			}
 		})
 	})
 }
 
 // 登录显示功能
-function showMe(){
+function showMe(id){
 	$('#login_btn').click(function(e){
 		if(show){
 			e.preventDefault();
@@ -130,7 +130,7 @@ function showMe(){
 	$('#tools li').on('click', function(){
 		let index = $(this).index();
 		if(index == 0){
-			window.location.href = 'me.html';
+			window.location.href = `Member.html?uid=${id}`;
 		}else if(index == 1){
 			window.location.href = 'task.html';
 		}else if(index == 2){
@@ -147,92 +147,106 @@ fetch(`${ip}/members`)
 .then((response) => {
 	response.json().then((data) => {
 		if(data.code == 200){
-			for(var i = 0; i < data.data.length; i++){
-				$('#list_banner li a').eq(i).attr('href', `Member.html?uid=${data.data[i].uid}`);
-				$('#list_banner li img').eq(i).attr('src', `${imgUrl}${data.data[i].face}`);
-				$('#list_banner li p').eq(i).text(data.data[i].nickname);
-				$('#frames img').eq(i).attr('src', `${imgUrl}${data.data[i].face}`);
+			leng = data.data.length;
+			$('#list_banner').width((270 + 120) * (leng + 3) - 120);
+			for(let i = 0; i < leng; i++){
+				li = `<li>
+							<a href="Member.html?uid=${data.data[i].uid}">
+								<div class="list_box"><img src="${imgUrl}${data.data[i].face}"></div>
+								<p>${data.data[i].nickname}</p>
+							</a>
+						</li>`;
+				frames = `<img src="${imgUrl}${data.data[i].face}" alt="face">`;
+
+				$('#list_banner').append(li);
+				$('#frames').append(frames);
 			}
-			j = -1;
-			for(var i = 3; i >= 1; i--){
-				$('#list_banner li a').eq(j).attr('href', `Member.html?uid=${data.data[i - 1].uid}`);
-				$('#list_banner li img').eq(j).attr('src', `${imgUrl}${data.data[i - 1].face}`);
-				$('#list_banner li p').eq(j).text(data.data[i - 1].nickname);
-				j--;
+			for(let i = 0; i < 3; i++){
+				li = `<li>
+							<a href="Member.html?uid=${data.data[i].uid}">
+								<div class="list_box"><img src="${imgUrl}${data.data[i].face}"></div>
+								<p>${data.data[i].nickname}</p>
+							</a>
+						</li>`;
+
+				$('#list_banner').append(li);
 			}
+			banner();
 		}
 	})
 });
 
 
-// 轮播图
-let time = 2000;
-let banner_timer = '';
-let num = 1;
-let leng = $('#list_banner li').length;
+function banner(){
+	// 轮播图
+	let time = 2000;
+	let banner_timer = '';
+	let num = 1;
+	let leng = $('#list_banner li').length;
 
-function move(){
-	$('#list_banner').animate({
-			left: -(num * 390)
-		}, 'slow', function() {
-			num++;
-			if(num >= leng - 2){
-				num = 1;
-				$('#list_banner').css('left', 0);
-			}
-	});
-}
-
-banner_timer = setInterval(move, time);
-
-// 上一张
-$('#left').click(function(){
-	if(!$('#list_banner').is(':animated')){
-		clearInterval(banner_timer);
-		num--;
-		if(num < 0){
-			num = leng - 3;
-			$('#list_banner').css('left', -(num * 390));
-		}
+	function move(){
 		$('#list_banner').animate({
-			left: -(num * 390)
-		}, 'slow');
-		banner_timer = setInterval(move, time);
+				left: -(num * 390)
+			}, 'slow', function() {
+				num++;
+				if(num >= leng - 2){
+					num = 1;
+					$('#list_banner').css('left', 0);
+				}
+		});
 	}
-});
 
-// 下一张
-$('#right').click(function(){
-	if(!$('#list_banner').is(':animated')){
-		clearInterval(banner_timer);
-		move();
-		banner_timer = setInterval(move, time);
-	}
-});
-
-// 显示middle
-$('#middle').hover(function(){
-	$('#frames').slideDown(200);
-}, function(){
-	$('#frames').slideUp(200);
-});
-
-// 点击轮播
-$('#frames img').click(function(){
-	if(!$('#list_banner').is(':animated')){
-		clearInterval(banner_timer);
-		num = $(this).index();
-		move();
-		banner_timer = setInterval(move, time);
-	}
-});
-
-// 鼠标移动停止轮播
-$('#list_banner li').hover(function(){
-	clearInterval(banner_timer);
-}, function(){
 	banner_timer = setInterval(move, time);
-});
+
+	// 上一张
+	$('#left').click(function(){
+		if(!$('#list_banner').is(':animated')){
+			clearInterval(banner_timer);
+			num--;
+			if(num < 0){
+				num = leng - 3;
+				$('#list_banner').css('left', -(num * 390));
+			}
+			$('#list_banner').animate({
+				left: -(num * 390)
+			}, 'slow');
+			banner_timer = setInterval(move, time);
+		}
+	});
+
+	// 下一张
+	$('#right').click(function(){
+		if(!$('#list_banner').is(':animated')){
+			clearInterval(banner_timer);
+			move();
+			banner_timer = setInterval(move, time);
+		}
+	});
+
+	// 显示middle
+	$('#middle').hover(function(){
+		$('#frames').slideDown(200);
+	}, function(){
+		$('#frames').slideUp(200);
+	});
+
+	// 点击轮播
+	$('#frames img').click(function(){
+		if(!$('#list_banner').is(':animated')){
+			clearInterval(banner_timer);
+			num = $(this).index();
+			move();
+			banner_timer = setInterval(move, time);
+		}
+	});
+
+	// 鼠标移动停止轮播
+	$('#list_banner li').hover(function(){
+		clearInterval(banner_timer);
+	}, function(){
+		banner_timer = setInterval(move, time);
+	});	
+}
 
 // 作品页跳转sessionStorage储存传参
 $('#team_work_in').on('click','li',function(){

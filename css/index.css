@@ -591,7 +591,6 @@ h1 img, h2 img{
 }
 #list_banner{
 	position: absolute;
-	width: 3780px;
 	height: 100%;
 	left: 0;
 	top: 0;
@@ -662,8 +661,10 @@ h1 img, h2 img{
 #frames{
 	display: none;
 	position: absolute;
+	left: -85px;
+	top: 60px;
 	width: 220px;
-	height: 119px;
+	height: auto;
 	left: -85px;
 	top: 65px;
 	z-index: 10;
@@ -671,6 +672,7 @@ h1 img, h2 img{
 	background-position: center;
 	padding: 22px 20px 13px;
 	box-sizing: border-box;
+	overflow: hidden;
 }
 #frames img{
 	display: block;
