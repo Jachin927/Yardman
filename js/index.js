@@ -99,6 +99,7 @@ create_leaf();
 
 // 检测登录状态
 let ip = 'http://10.21.40.246/muma.php';
+let imgUrl = 'http://10.21.40.246';
 let token = localStorage.getItem('token');
 let show = false;
 
@@ -107,7 +108,7 @@ if(token){
 	.then((response) => {
 		response.json().then((data) => {
 			if(data.code == 200){
-				$('#login_btn').css('backgroundImage', 'url(' + data.data.face + ')');
+				$('#login_btn').css('backgroundImage', `url(${imgUrl}/${data.data.face})`);
 				show = true;
 				showMe();
 			}
@@ -148,14 +149,14 @@ fetch(`${ip}/members`)
 		if(data.code == 200){
 			for(var i = 0; i < data.data.length; i++){
 				$('#list_banner li a').eq(i).attr('href', `Member.html?uid=${data.data[i].uid}`);
-				$('#list_banner li img').eq(i).attr('src', data.data[i].face);
+				$('#list_banner li img').eq(i).attr('src', `${imgUrl}${data.data[i].face}`);
 				$('#list_banner li p').eq(i).text(data.data[i].nickname);
-				$('#frames img').eq(i).attr('src', data.data[i].face);
+				$('#frames img').eq(i).attr('src', `${imgUrl}${data.data[i].face}`);
 			}
 			j = -1;
 			for(var i = 3; i >= 1; i--){
 				$('#list_banner li a').eq(j).attr('href', `Member.html?uid=${data.data[i - 1].uid}`);
-				$('#list_banner li img').eq(j).attr('src', data.data[i - 1].face);
+				$('#list_banner li img').eq(j).attr('src', `${imgUrl}${data.data[i - 1].face}`);
 				$('#list_banner li p').eq(j).text(data.data[i - 1].nickname);
 				j--;
 			}
