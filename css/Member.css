@@ -56,6 +56,7 @@ body,html{
 	display: flex;
 }
 .modification{
+	display: none;
 	position: absolute;
 	top: 23px;
 	right: 29px;
@@ -74,6 +75,7 @@ body,html{
 .user_pic img{
 	width: 100%;
 	height: 100%;
+	border-radius: 50%;
 }
 .sidebar_user h2{
 	width: 200px;
@@ -149,14 +151,16 @@ body,html{
 }
 .species li{
 	float: left;
-	padding: 9px 18px;
+	padding: 8px 14px;
 	border-radius: 2px;
 	color: #fff;
 	margin-left: 30px;
+	margin-bottom: 10px;
 	font-size: 12px;
 	background-color: #fa6d39;
 }
 .release{
+	display: none;
 	width: 120px;
 	height: 40px;
 	background-image:linear-gradient(90deg, #ff6753 0%, #fb9241 100%),linear-gradient(#fa6d39, #fa6d39); 

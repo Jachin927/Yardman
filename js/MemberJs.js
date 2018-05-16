@@ -1,15 +1,42 @@
-//获取个人作品
+if (localStorage.hasOwnProperty('token')) {
+	$('.release').css('display','inline-block');
+}
+//获取A标签参数
+let url = new URL(window.location.href);
+let uid = url.searchParams.get("uid");
+
 let list_data=new Array();//初始数据
 let select_data=new Array();//上传分类
+let myInfo=new Array();
 let list_li=$('.list');
-let imgUrl='http://10.21.40.246'
+let baseUrl='http://10.21.40.246'
+//获取个人信息
+fetch(`${baseUrl}/muma.php/pfl/info?uid=${uid}`)
+.then(resolve=>resolve.json()
+	.then(data=>{
+		myInfo=data;
+		// console.log(myInfo)
+		$('#info_face').attr('src',baseUrl+myInfo.data.face);
+		$('#info_nickname').text(myInfo.data.nickname);
+		$('#info_dir').text(`${myInfo.data.profession} | ${myInfo.data.direction}`);
+		$('#info_motto').text(myInfo.data.motto);
+		$('#info_popularity').text(myInfo.data.popularity);
+		$('#info_like').text(myInfo.data.isLike);
+		let info_label = $('#info_label')
+		$.each(myInfo.data.label,(ind,val)=>{
+			info_label.append(`<li>${val}</li>`)
+		})
+	})
+).catch(error=>alert('操作错误！'))
+
+
+//获取个人作品
 function getListData(page){
 	getListData.arguments.length>0?page=page:page=sessionStorage.getItem('Member_pageNum')||""
-	fetch(`http://10.21.40.246/muma.php/pfl/me?token=${localStorage.getItem('token')}&page=${page}`)
+	fetch(`${baseUrl}/muma.php/pfl/me?uid=${uid}&page=${page}`)
 		.then(resolve=>resolve.json()
 			.then(data=>{
 				list_data=data;
-				console.log(list_data)
 				//初始值改变
 				$('#total').text(`作品 ${list_data.total}`);
 				$('#page').text(`${list_data.current_page}/${list_data.last_page}页`);
@@ -17,15 +44,15 @@ function getListData(page){
 				list_li.html('')
 				$.each(list_data.data,ind=>{
 					list_li.append(`
-						<li mid=${list_data.data[ind].id}>
-							<a href="DetailsWork.html">
+						<li>
+							<a href="DetailsWork.html?id=${list_data.data[ind].id}">
 								<div class="list_shang">
-									<img src=${imgUrl}${list_data.data[ind].cover}>
+									<img src=${baseUrl}${list_data.data[ind].cover}>
 								</div>
 								<div class="list_zhong">
 									<i><span class="look"></span>${list_data.data[ind].browse}</i>
 									<i><span class="comments"></span>${list_data.data[ind].comment}</i>
-									<i><span class="praise"></span>${list_data.data[ind].like}</i>
+									<i><span class="praise"></span>${list_data.data[ind].isLike}</i>
 									<h3>${list_data.data[ind].title}</h3>
 								</div>
 								<div class="list_xia">
@@ -53,7 +80,7 @@ $('.pager>.btn_left').on('click',function(){
 		list_data.current_page--
 		getListData(list_data.current_page)
 	}else{
-		alert('以及是第一页了哦~')
+		alert('已经是第一页了哦~')
 	}
 })
 
@@ -64,7 +91,7 @@ $('.pager>.btn_left').on('click',function(){
 		$('.bounced').css('display','flex');
 		//获取上传模块分类
 		let select_li=$('.select_ul li');
-		fetch('http://10.21.40.246/muma.php/cat')
+		fetch(`${baseUrl}/muma.php/cat`)
 			.then(resolve=>resolve.json()
 				.then(data=>{
 					select_data = data;
@@ -104,7 +131,7 @@ $('.pager>.btn_left').on('click',function(){
 		$('.select span').trigger('click').text($('#select_hidden').val())
 		$('#cid').val($('.select_ul li').eq(select_li_check).attr('cid'));//一级菜单cid
 		$('#cat').val($(this).attr('cat'));//二级菜单cat
-		console.log($('#cid').val())
+		// console.log($('#cid').val())
 		$('#cid').val()==2?$('#work_url').attr('disabled','disabled'):$('#work_url').removeAttr('disabled')
 	})	
 
@@ -153,37 +180,20 @@ $('#btn_t').on('click',function(){
 	formData.append('token',localStorage.getItem('token'))
 	$.each(uploadImg_li,function(i){
 		formData.append('img'+[i],$(this).children('img').attr('src'))
-		// console.log(formData.get('img'+[i]))
 	})
-	// console.log(formData.get('imgSum'))
-
-	/*$.ajax({
-		url:'http://10.21.40.246/muma.php/pfl/add',
-		type:'POST'
-		dataType:'json',
-		data:formData,
-		success:function(data){
-
-		}
-	})*/
-	fetch('http://10.21.40.246/muma.php/pfl/add',{
+	fetch(`${baseUrl}/muma.php/pfl/add`,{
 		method:'post',
 		body:formData
 	}).then(resolve=>resolve.json().then(data=>{
-		console.log(data)
-		// alert(data.msg);
-		// if (data.code==200) {
-		// 	window.location.reload()
-		// }
+		// console.log(data)
+		alert(data.msg)
 	})).catch(error=>alert('操作错误！'))
 })
 //关闭
 $('#btn_f').on('click',function(){
 	$('.bounced').css('display','none')
 })
-
-
-//作品详情跳转参数储存
-$('.list').on('click','li',function(){
-	sessionStorage.setItem('DetailsId',$(this).attr('mid'))
+//
+$('#return').on('click',function(){
+	window.history.go(-1);
 })

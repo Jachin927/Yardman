@@ -7,28 +7,26 @@
 	<link rel="stylesheet" type="text/css" href="css/DetailsWork.css">
 </head>
 <body>
-	<div id="logo"><img src="images/DetailWork/logo.png"></div>
+	<div id="logo"><a href="index.html"><img src="images/DetailWork/logo.png"></a></div>
 	<div id="user"><img src="images/DetailWork/user.png"></div>
 	<div id="return"><img src="images/DetailWork/icon/return-icon.png"></div>
 	<div id="content">
 		<div class="sidebar">
-			<h2>班级成员</h2>
-			<p>网页 <span>1天前发布作品</span></p>
+			<h2 id="info_title"></h2>
+			<p><span id='info_name'></span><span id='info_time'></span><a id="info_url">查看链接</a></p>
 			<div class="sidebar_r">
-				<i><span><img src="images/DetailWork/icon/watch-icon.png"></span>52</i>
-				<i><span><img src="images/DetailWork/icon/comment-icon.png"></span>3</i>
-				<i><span><img src="images/DetailWork/icon/like-icon.png"></span>20</i>
+				<i><span><img src="images/DetailWork/icon/watch-icon.png"></span><em  id="info_browse">0</em></i>
+				<i><span><img src="images/DetailWork/icon/comment-icon.png"></span><em id="info_comment"></em></i>
+				<i><span><img src="images/DetailWork/icon/like-icon.png"></span><em id="info_like"></em></i>
 			</div>
-			<div class="sidebar_pic">
-				<img src="images/DetailWork/content/production.png">
-			</div>
+			<ul class="sidebar_pic" id="info_images"></ul>
 		</div>
 		<div class="about">
 			<div class="about_user">
 				<div class="about_userPic">
-					<span><img src="images/DetailWork/user.png"></span>
-					<h3>WaveG</h3>
-					<p>学生 / 设计</p>		
+					<span><img id="info_face"></span>
+					<h3 id="info_nickname"></h3>
+					<p id="info_dir"></p>		
 				</div>
 					<div class="about_userLike">
 						<p><span></span>欣赏作品</p>
@@ -38,60 +36,24 @@
 				<div class="about_list_inner">
 					<h4>其他作品</h4>
 					<ul class="inner_list">
-						<li><img src="images/DetailWork/content/OtherWorks-01.png"></li>
-						<li><img src="images/DetailWork/content/OtherWorks-02.png"></li>
-						<li><img src="images/DetailWork/content/OtherWorks-03.png"></li>
-						<li><img src="images/DetailWork/content/OtherWorks-04.png"></li>
 					</ul>
-					<span>更多</span>
+					<a href="teamWork.html"><span>更多</span></a>
 				</div>
 			</div>
 			<div class="about_comments">
 				<div class="about_comments_inner">
 					<h4>作品评论</h4>
-					<div class="form">
-						<div class="text">
-							<textarea>表达一点您的想法</textarea>
-						</div>
-						<button>评论</button>
-					</div>
+					<form class="form" name="form">
+						<textarea class="text" placeholder="表达一点您的想法" maxlength="30" name="comment"></textarea>
+						<span><i id="textNum">0</i>/30</span>
+						<i id="comment_btn">评论</i>
+					</form>
 				</div>
 				<ul class="comments_list">
-					<li>
-						<div class="comments_pic">
-							<i><img src="images/DetailWork/user.png"></i>
-						</div>
-						<div class="comments_title">
-							<h2>WaveG</h2>
-							<span>14分钟前</span>
-							<p>实打实打算的问起我说</p>
-						</div>
-					</li>
-					<li>
-						<div class="comments_pic">
-							<i><img src="images/DetailWork/user.png"></i>
-						</div>
-						<div class="comments_title">
-							<h2>WaveG</h2>
-							<span>14分钟前</span>
-							<p>实打实打算的问起我说</p>
-						</div>
-					</li>
-					<li>
-						<div class="comments_pic">
-							<i><img src="images/DetailWork/user.png"></i>
-						</div>
-						<div class="comments_title">
-							<h2>WaveG</h2>
-							<span>14分钟前</span>
-							<p>实打实打算的问起我说</p>
-						</div>
-					</li>
-					<div  class="loading">
-						<span>更多评论</span>
-					</div>
-					
 				</ul>
+				<div  class="loading">
+					<span>更多评论</span>
+				</div>
 			</div>
 		</div>
 	</div>

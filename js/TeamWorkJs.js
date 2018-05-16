@@ -54,8 +54,9 @@ function res(url){
 }
 
 // 标签栏切换获取数据
-$('.category li').eq(sessionStorage.getItem('TeamWorkNum')).addClass('category_on');
-num = parseInt(sessionStorage.getItem('TeamWorkNum')) + 1;
+TeamWorkNum = sessionStorage.getItem('TeamWorkNum')||0
+$('.category li').eq(TeamWorkNum).addClass('category_on');
+num = parseInt(TeamWorkNum) + 1;
 url = `${ip}/all/${num}`;
 res(url);
 
@@ -102,7 +103,7 @@ function item(data, url){
 				<div class="worksList_zhong">
 					<i><span class="look"></span>${v.browse}</i>
 					<i><span class="comments"></span>${v.comment}</i>
-					<i><span class="praise"></span>${v.like}</i>
+					<i><span class="praise"></span>${v.isLike}</i>
 					<h3>${v.title}</h3>
 				</div>
 				<div class="worksList_xia">
