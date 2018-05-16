@@ -1,6 +1,6 @@
 // 检测登录状态
-let ip = 'http://10.21.40.246/muma.php';
-let imgIP = 'http://10.21.40.246';
+let ip = 'http://lostars.cn/muma.php';
+let imgIP = 'http://lostars.cn';
 let token = localStorage.getItem('token');
 let show = false;
 

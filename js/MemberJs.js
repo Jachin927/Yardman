@@ -2,11 +2,11 @@
 let url = new URL(window.location.href);
 let uid = url.searchParams.get("uid");
 
-let list_data=new Array();//初始数据
-let select_data=new Array();//上传分类
-let myInfo=new Array();
-let list_li=$('.list');
-let baseUrl='http://10.21.40.246'
+let list_data = new Array();//初始数据
+let select_data = new Array();//上传分类
+let myInfo = new Array();
+let list_li = $('.list');
+let baseUrl = 'http://lostars.cn';
 let token = localStorage.getItem('token');
 let show = false;
 

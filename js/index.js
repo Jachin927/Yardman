@@ -98,8 +98,8 @@ timer = setInterval('create_leaf()', 2000);
 create_leaf();
 
 // 检测登录状态
-let ip = 'http://10.21.40.246/muma.php';
-let imgUrl = 'http://10.21.40.246';
+let ip = 'http://lostars.cn/muma.php';
+let imgUrl = 'http://lostars.cn';
 let token = localStorage.getItem('token');
 let show = false;
 

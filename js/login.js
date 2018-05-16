@@ -36,7 +36,7 @@ $(".submit").click(function(){
         $('span').eq(1).focus();
     }
     if((usr != '' || usr != null) && (pwd != '' || pwd != null)){
-        ip = 'http://10.21.40.246/muma.php/usr/login';
+        ip = 'http://lostars.cn/muma.php/usr/login';
         init = {
             method: 'post',
             body: new FormData($('#login-form')[0])

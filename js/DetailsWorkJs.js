@@ -1,7 +1,7 @@
 //获取初始数据
 let url = new URL(window.location.href);
 let id = url.searchParams.get("id");
-let baseUrl = 'http://10.21.40.246';
+let baseUrl = 'http://lostars.cn';
 // 检测登录状态
 let token = localStorage.getItem('token');
 let show = false;
