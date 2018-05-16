@@ -2,6 +2,49 @@
 let url = new URL(window.location.href);
 let id = url.searchParams.get("id");
 let baseUrl = 'http://10.21.40.246';
+// 检测登录状态
+let token = localStorage.getItem('token');
+let show = false;
+
+if(token){
+	fetch(`${baseUrl}/muma.php/usr/logged?token=${token}`)
+	.then((response) => {
+		response.json().then((data) => {
+			if(data.code == 200){
+				$('#login_btn').css('backgroundImage', `url(${baseUrl}${data.data.face})`);
+				show = true;
+				showMe(data.data.id);
+			}
+		})
+	})
+}
+
+// 登录显示功能
+function showMe(id){
+	$('#login_btn').click(function(e){
+		if(show){
+			e.preventDefault();
+			if(!$('#tools').is(':animated')){
+				$('#tools').fadeToggle(200);
+			}
+		}
+	});
+
+	$('#tools li').on('click', function(){
+		let index = $(this).index();
+		if(index == 0){
+			window.location.href = `Member.html?uid=${id}`;
+		}else if(index == 1){
+			alert('页面还没出来哦-.-');
+		}else if(index == 2){
+			localStorage.removeItem('token');
+			$('#login_btn').trigger('click');
+			$('#login_btn').css('backgroundImage', '');
+			show = false;
+		}
+	});
+}
+
 if (sessionStorage.getItem('watchList')==""||sessionStorage.getItem('watchList')==null) {
 	sessionStorage.removeItem('watchList')
 }
@@ -19,7 +62,6 @@ fetch(`${baseUrl}/muma.php/pfl/dtl?id=${id}&isAdd=${isAdd}`)
 	.then(resolve=>resolve.json()
 		.then(data=>{
 			info=data;
-			console.log(info)	
 			$('#info_title').text(info.data.title)
 			$('#info_name').text(info.data.name)
 			$('#info_time').text(info.data.create_time)

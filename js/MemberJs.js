@@ -1,6 +1,3 @@
-if (localStorage.hasOwnProperty('token')) {
-	$('.release').css('display','inline-block');
-}
 //获取A标签参数
 let url = new URL(window.location.href);
 let uid = url.searchParams.get("uid");
@@ -10,6 +7,50 @@ let select_data=new Array();//上传分类
 let myInfo=new Array();
 let list_li=$('.list');
 let baseUrl='http://10.21.40.246'
+let token = localStorage.getItem('token');
+let show = false;
+
+if(token){
+	fetch(`${baseUrl}/muma.php/usr/logged?token=${token}`)
+	.then((response) => {
+		response.json().then((data) => {
+			if(data.code == 200){
+				if (uid == data.data.id) {
+					$('.release').css('display','inline-block');
+				}
+				$('#login_btn').css('backgroundImage', `url(${baseUrl}${data.data.face})`);
+				show = true;
+				showMe(data.data.id);
+			}
+		})
+	})
+}
+
+// 登录显示功能
+function showMe(id){
+	$('#login_btn').click(function(e){
+		if(show){
+			e.preventDefault();
+			if(!$('#tools').is(':animated')){
+				$('#tools').fadeToggle(200);
+			}
+		}
+	});
+
+	$('#tools li').on('click', function(){
+		let index = $(this).index();
+		if(index == 0){
+			window.location.href = `Member.html?uid=${id}`;
+		}else if(index == 1){
+			alert('页面还没出来哦-.-');
+		}else if(index == 2){
+			localStorage.removeItem('token');
+			$('#login_btn').trigger('click');
+			$('#login_btn').css('backgroundImage', '');
+			show = false;
+		}
+	});
+}
 //获取个人信息
 fetch(`${baseUrl}/muma.php/pfl/info?uid=${uid}`)
 .then(resolve=>resolve.json()

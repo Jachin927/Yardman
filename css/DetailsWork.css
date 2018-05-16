@@ -6,7 +6,7 @@ body,html{
 	min-width: 1920px;
 	height: 100%;
 	overflow: auto;
-	background-image: url(../images/DetailWork/bg.png);
+	background-image: url(../images/bg.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	position: relative;
@@ -33,14 +33,142 @@ body,html{
 	height: 100%;
 }
 #user{
+	position: absolute;
+	right: 48px;
+	top: 30px;
 	width: 42px;
 	height: 42px;
-	position: absolute;
-	top: 30px;
-	right: 48px;
 	border-radius: 50%;
-	overflow: hidden;
 }
+#login_btn{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url('../images/login/login.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+}
+
+/*工具样式*/
+#tools{
+	position: absolute;
+	font-size: 12px;
+	left: 0;
+    top: 0;
+    display: none;
+}
+#tools li{
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background: #fa6d39;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	z-index: 100;
+	opacity: 0;
+	cursor: pointer;
+	background-color: transparent;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+#tools li:nth-child(1){
+	/*left: -76px;opacity: 1;*/
+	background-image: url('../images/login/icon-me.png');
+	animation: toggle_one .35s linear forwards;
+}
+#tools li:nth-child(2){
+	/*left: -56px;top: 54px;opacity: 1;*/
+	background-image: url('../images/login/icon-task.png');
+	animation: toggle_second .35s .2s forwards;
+}
+#tools li:nth-child(3){
+	left: 2px;
+	/*top: 78px;opacity: 1;*/
+	background-image: url('../images/login/icon-exit.png');
+	animation: toggle_third .35s .4s forwards;
+}
+@keyframes toggle_one{
+	from{left: 0;opacity: 0;}
+	to{left: -76px;opacity: 1;}
+}
+
+@keyframes toggle_second{
+	from{left: 0;top: 0;opacity: 0;}
+	to{left: -56px;top: 54px;opacity: 1;}
+}
+
+@keyframes toggle_third{
+	from{top: 0;opacity: 0;}
+	to{top: 78px;opacity: 1;}
+}
+#login_btn{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url('../images/login/login.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+}
+
+/*工具样式*/
+#tools{
+	position: absolute;
+	font-size: 12px;
+	left: 0;
+    top: 0;
+    display: none;
+}
+#tools li{
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background: #fa6d39;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	z-index: 100;
+	opacity: 0;
+	cursor: pointer;
+	background-color: transparent;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+#tools li:nth-child(1){
+	/*left: -76px;opacity: 1;*/
+	background-image: url('../images/login/icon-me.png');
+	animation: toggle_one .35s linear forwards;
+}
+#tools li:nth-child(2){
+	/*left: -56px;top: 54px;opacity: 1;*/
+	background-image: url('../images/login/icon-task.png');
+	animation: toggle_second .35s .2s forwards;
+}
+#tools li:nth-child(3){
+	left: 2px;
+	/*top: 78px;opacity: 1;*/
+	background-image: url('../images/login/icon-exit.png');
+	animation: toggle_third .35s .4s forwards;
+}
+@keyframes toggle_one{
+	from{left: 0;opacity: 0;}
+	to{left: -76px;opacity: 1;}
+}
+
+@keyframes toggle_second{
+	from{left: 0;top: 0;opacity: 0;}
+	to{left: -56px;top: 54px;opacity: 1;}
+}
+
+@keyframes toggle_third{
+	from{top: 0;opacity: 0;}
+	to{top: 78px;opacity: 1;}
+}
+
 #return{
 	width: 34px;
 	height: 34px;

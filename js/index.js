@@ -108,7 +108,7 @@ if(token){
 	.then((response) => {
 		response.json().then((data) => {
 			if(data.code == 200){
-				$('#login_btn').css('backgroundImage', `url(${imgUrl}/${data.data.face})`);
+				$('#login_btn').css('backgroundImage', `url(${imgUrl}${data.data.face})`);
 				show = true;
 				showMe(data.data.id);
 			}
@@ -132,7 +132,7 @@ function showMe(id){
 		if(index == 0){
 			window.location.href = `Member.html?uid=${id}`;
 		}else if(index == 1){
-			window.location.href = 'task.html';
+			alert('页面还没出来哦-.-');
 		}else if(index == 2){
 			localStorage.removeItem('token');
 			$('#login_btn').trigger('click');
@@ -142,7 +142,16 @@ function showMe(id){
 	});
 }
 
+// 显示二维码
+$('#join_btn').click(function(){
+	$('#QR').toggle(200);
+})
+$('#QR').mouseleave(function(){
+	$(this).toggle(200);
+})
+
 // 获取成员信息
+$('#frames').width((36 * 4) + (12 * 3));
 fetch(`${ip}/members`)
 .then((response) => {
 	response.json().then((data) => {
@@ -156,7 +165,7 @@ fetch(`${ip}/members`)
 								<p>${data.data[i].nickname}</p>
 							</a>
 						</li>`;
-				frames = `<img src="${imgUrl}${data.data[i].face}" alt="face">`;
+				frames = `<a href="Member.html?uid=${data.data[i].uid}"><img src="${imgUrl}${data.data[i].face}" alt="face"></a>`;
 
 				$('#list_banner').append(li);
 				$('#frames').append(frames);
@@ -175,7 +184,6 @@ fetch(`${ip}/members`)
 		}
 	})
 });
-
 
 function banner(){
 	// 轮播图
@@ -228,6 +236,10 @@ function banner(){
 		$('#frames').slideDown(200);
 	}, function(){
 		$('#frames').slideUp(200);
+	});
+
+	$('#frames').on('mousewheel DOMMouseScroll', function(e){
+		e.stopPropagation();
 	});
 
 	// 点击轮播

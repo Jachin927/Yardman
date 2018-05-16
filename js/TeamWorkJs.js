@@ -11,14 +11,14 @@ if(token){
 			if(data.code == 200){
 				$('#login_btn').css('backgroundImage', `url(${imgIP}${data.data.face})`);
 				show = true;
-				showMe();
+				showMe(data.data.id);
 			}
 		})
 	})
 }
 
 // 登录显示功能
-function showMe(){
+function showMe(id){
 	$('#login_btn').click(function(e){
 		if(show){
 			e.preventDefault();
@@ -31,9 +31,9 @@ function showMe(){
 	$('#tools li').on('click', function(){
 		let index = $(this).index();
 		if(index == 0){
-			window.location.href = 'me.html';
+			window.location.href = `Member.html?uid=${id}`;
 		}else if(index == 1){
-			window.location.href = 'task.html';
+			alert('页面还没出来哦-.-');
 		}else if(index == 2){
 			localStorage.removeItem('token');
 			$('#login_btn').trigger('click');
