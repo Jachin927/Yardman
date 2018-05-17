@@ -837,3 +837,27 @@ body,html{
 .colorOrange{
 	color: #fa6d39;
 }
+#uploadIngBg{
+	/*display: inline-block;*/
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.2);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: none;
+}
+#uploadIngBg i{
+	font-style: normal;
+	display: inline-block;
+	text-align: center;
+	width: 30%;
+	/*height: 110px;*/
+	line-height: 110px;
+	background: #fff;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}

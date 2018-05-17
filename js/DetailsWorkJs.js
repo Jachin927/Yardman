@@ -45,10 +45,10 @@ function showMe(id){
 	});
 }
 
-if (sessionStorage.getItem('watchList')==""||sessionStorage.getItem('watchList')==null) {
-	sessionStorage.removeItem('watchList')
+if (sessionStorage.getItem('Ym_watchList')==""||sessionStorage.getItem('Ym_watchList')==null) {
+	sessionStorage.removeItem('Ym_watchList')
 }
-let watchList = JSON.parse(sessionStorage.getItem('watchList'))||[0]
+let watchList = JSON.parse(sessionStorage.getItem('Ym_watchList'))||[0]
 let isAdd = 1;
 $.each(watchList,(ind,val)=>{
 	if(id==val){
@@ -74,7 +74,7 @@ fetchJsonp(`${baseUrl}/muma.php/pfl/dtl?id=${id}&isAdd=${isAdd}`)
 			$('#info_dir').text(`${info.data.profession} | ${info.data.direction}`);
 			if (isAdd==1) {
 				watchList.push(id)
-				sessionStorage.setItem('watchList',JSON.stringify(watchList))
+				sessionStorage.setItem('Ym_watchList',JSON.stringify(watchList))
 			}
 			info.data.url==""?$('#info_url').css('display','none'):$('#info_url').attr('href',info.data.url)
 			let info_images = $('#info_images');
@@ -159,7 +159,7 @@ $('#comment_btn').on('click',function(){
 if (localStorage.getItem('Ym_likeList')==""||localStorage.getItem('Ym_likeList')==null) {
 	localStorage.removeItem('Ym_likeList')
 }
-let likeList = JSON.parse(sessionStorage.getItem('likeList'))||[0]
+let likeList = JSON.parse(localStorage.getItem('Ym_likeList'))||[0]
 let isLike = 1;
 $.each(likeList,function(ind,val){
 	if (id==val) {
@@ -180,13 +180,13 @@ $('.about_userLike').on('click',function(){
 				$('#info_like').text(data.data.isLike)
 				if (isLike==1) {
 					likeList.push(id)
-					localStorage.setItem('likeList',JSON.stringify(likeList));
-					likeList = JSON.parse(localStorage.getItem('likeList'));
+					localStorage.setItem('Ym_likeList',JSON.stringify(likeList));
+					likeList = JSON.parse(localStorage.getItem('Ym_likeList'));
 					isLike=2;
 					$('.about_userLike').css({'border':'1px solid #dbdbdb','background':'#fff','color':'#999'}).html('<p><span></span>取消喜欢</p>')
 				}else{
 					likeList.splice($.inArray(id,likeList),1);
-					localStorage.setItem('likeList',JSON.stringify(likeList));
+					localStorage.setItem('Ym_likeList',JSON.stringify(likeList));
 					isLike=1;
 					$('.about_userLike').css({'border':'none','background':'#fa6d39','color':'#fff'}).html('<p><span></span>欣赏作品</p>')
 				}

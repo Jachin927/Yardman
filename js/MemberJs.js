@@ -213,6 +213,7 @@ $('#upload_cover').on('change',function(){
 
 //上传事件
 $('#btn_t').on('click',function(){
+	$('#uploadIngBg').css('display','inline-block');
 	let fileUrl=new Array();//上传图片路径数组
 	let uploadImg_li=$('#uploadImg_show li');
 	let formData=new FormData($('#upload_data')[0]);
@@ -227,8 +228,9 @@ $('#btn_t').on('click',function(){
 		body:formData
 	}).then(resolve=>resolve.json().then(data=>{
 		// console.log(data)
+		$('#uploadIngBg').css('display','none');
 		alert(data.msg)
-	})).catch(error=>alert('操作错误！'))
+	})).catch(error=>{alert('操作错误！');$('#uploadIngBg').css('display','none');})
 })
 //关闭
 $('#btn_f').on('click',function(){
