@@ -547,8 +547,8 @@ body,html{
 	border-radius: 3px;
  	border: solid 1px #d5d5d5;
  	line-height: 48px;
-  font-size: 12px;
-  z-index: 2;
+  	font-size: 12px;
+  	z-index: 3;
 }
 .select:hover{
 	border-color: #a59f9f;

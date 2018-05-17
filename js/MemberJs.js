@@ -226,6 +226,7 @@ $('#btn_t').on('click',function(){
 		body:formData
 	}).then(resolve=>resolve.json().then(data=>{
 		$('#uploadIngBg').css('display','none');
+		if (data.code==200) {window.location.reload();}
 		alert(data.msg)
 	})).catch(error=>{alert('操作错误！');$('#uploadIngBg').css('display','none');})
 })
