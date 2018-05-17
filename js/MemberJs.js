@@ -56,7 +56,6 @@ fetchJsonp(`${baseUrl}/muma.php/pfl/info?uid=${uid}`)
 .then(resolve=>resolve.json()
 	.then(data=>{
 		myInfo=data;
-		// console.log(myInfo)
 		$('#info_face').attr('src',baseUrl+myInfo.data.face);
 		$('#info_nickname').text(myInfo.data.nickname);
 		$('#info_dir').text(`${myInfo.data.profession} | ${myInfo.data.direction}`);
@@ -172,7 +171,6 @@ $('.pager>.btn_left').on('click',function(){
 		$('.select span').trigger('click').text($('#select_hidden').val())
 		$('#cid').val($('.select_ul li').eq(select_li_check).attr('cid'));//一级菜单cid
 		$('#cat').val($(this).attr('cat'));//二级菜单cat
-		// console.log($('#cid').val())
 		$('#cid').val()==2?$('#work_url').attr('disabled','disabled'):$('#work_url').removeAttr('disabled')
 	})	
 
@@ -227,7 +225,6 @@ $('#btn_t').on('click',function(){
 		method:'post',
 		body:formData
 	}).then(resolve=>resolve.json().then(data=>{
-		// console.log(data)
 		$('#uploadIngBg').css('display','none');
 		alert(data.msg)
 	})).catch(error=>{alert('操作错误！');$('#uploadIngBg').css('display','none');})

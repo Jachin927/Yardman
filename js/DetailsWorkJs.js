@@ -95,7 +95,6 @@ function getcomments_data(page){
 	fetchJsonp(`${baseUrl}/muma.php/cmt/list?pid=${id}&page=${page}`)
 		.then(resolve=>resolve.json()
 			.then(data=>{
-				// console.log(data)
 				comments_page=data.data.current_page
 				let loading=$('.comments_list')
 				if (page==1) {$('.comments_list').html('');}
@@ -128,7 +127,6 @@ function getcomments_data(page){
 }
 $('.loading').on('click',function(){
 		comments_page++;
-		// console.log(comments_data.current_page)
 		getcomments_data(comments_page);
 })
 
@@ -176,7 +174,6 @@ $('.about_userLike').on('click',function(){
 	fetchJsonp(`${baseUrl}/muma.php/like?pid=${id}&isLike=${isLike}`)
 		.then(resolve=>resolve.json()
 			.then(data=>{
-				console.log(data)
 				$('#info_like').text(data.data.isLike)
 				if (isLike==1) {
 					likeList.push(id)
