@@ -1,11 +1,11 @@
 // 检测登录状态
-let ip = 'http://lostars.cn/muma.php';
-let imgIP = 'http://lostars.cn';
+let ip = 'http://muma.webgz.cn/php/muma.php';
+let imgIP = 'http://muma.webgz.cn/php';
 let token = localStorage.getItem('token');
 let show = false;
 
 if(token){
-	fetch(`${ip}/usr/logged?token=${token}`)
+	fetchJsonp(`${ip}/usr/logged?token=${token}`)
 	.then((response) => {
 		response.json().then((data) => {
 			if(data.code == 200){
@@ -45,7 +45,7 @@ function showMe(id){
 
 // fetch请求
 function res(url){
-	fetch(url)
+	fetchJsonp(url)
 	.then((response) => {
 		response.json().then((data) => {
 			item(data, url);

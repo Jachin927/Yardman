@@ -36,20 +36,20 @@ $(".submit").click(function(){
         $('span').eq(1).focus();
     }
     if((usr != '' || usr != null) && (pwd != '' || pwd != null)){
-        ip = 'http://lostars.cn/muma.php/usr/login';
+        ip = 'http://muma.webgz.cn/php/muma.php/usr/login';
         init = {
             method: 'post',
             body: new FormData($('#login-form')[0])
         }
         fetch(ip, init)
-        .then((response) => {
-            response.json().then((data) => {
+        .then(response => {
+            response.json().then(data => {
                 alert(data.msg);
                 if(data.code == 200){
                     localStorage.setItem('token', data.token);
                     window.location.href = 'index.html';
                 }
             })
-        });
+        })
     }
 });

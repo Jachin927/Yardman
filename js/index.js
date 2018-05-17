@@ -5,19 +5,6 @@ document.onreadystatechange = function(){
 	}
 }
 
-// 第一次访问再次刷新
-let first = true;
-if(sessionStorage.getItem('first')){
-	first = false;
-}else{
-	first = true;
-}
-
-if(first){
-	sessionStorage.setItem('first', false);
-	location.reload();
-}
-
 // 滚轮切换动画
 var module = 0;
 function mousewheel(){
@@ -111,13 +98,13 @@ timer = setInterval('create_leaf()', 2000);
 create_leaf();
 
 // 检测登录状态
-let ip = 'http://lostars.cn/muma.php';
-let imgUrl = 'http://lostars.cn';
+let ip = 'http://muma.webgz.cn/php/muma.php';
+let imgUrl = 'http://muma.webgz.cn/php';
 let token = localStorage.getItem('token');
 let show = false;
 
 if(token){
-	fetch(`${ip}/usr/logged?token=${token}`)
+	fetchJsonp(`${ip}/usr/logged?token=${token}`)
 	.then((response) => {
 		response.json().then((data) => {
 			if(data.code == 200){
@@ -165,7 +152,7 @@ $('#QR').mouseleave(function(){
 
 // 获取成员信息
 $('#frames').width((36 * 4) + (12 * 3));
-fetch(`${ip}/members`)
+fetchJsonp(`${ip}/members`)
 .then((response) => {
 	response.json().then((data) => {
 		if(data.code == 200){

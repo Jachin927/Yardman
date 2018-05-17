@@ -6,12 +6,12 @@ let list_data = new Array();//初始数据
 let select_data = new Array();//上传分类
 let myInfo = new Array();
 let list_li = $('.list');
-let baseUrl = 'http://lostars.cn';
+let baseUrl = 'http://muma.webgz.cn/php';
 let token = localStorage.getItem('token');
 let show = false;
 
 if(token){
-	fetch(`${baseUrl}/muma.php/usr/logged?token=${token}`)
+	fetchJsonp(`${baseUrl}/muma.php/usr/logged?token=${token}`)
 	.then((response) => {
 		response.json().then((data) => {
 			if(data.code == 200){
@@ -52,7 +52,7 @@ function showMe(id){
 	});
 }
 //获取个人信息
-fetch(`${baseUrl}/muma.php/pfl/info?uid=${uid}`)
+fetchJsonp(`${baseUrl}/muma.php/pfl/info?uid=${uid}`)
 .then(resolve=>resolve.json()
 	.then(data=>{
 		myInfo=data;
@@ -74,7 +74,7 @@ fetch(`${baseUrl}/muma.php/pfl/info?uid=${uid}`)
 //获取个人作品
 function getListData(page){
 	getListData.arguments.length>0?page=page:page=sessionStorage.getItem('Member_pageNum')||""
-	fetch(`${baseUrl}/muma.php/pfl/me?uid=${uid}&page=${page}`)
+	fetchJsonp(`${baseUrl}/muma.php/pfl/me?uid=${uid}&page=${page}`)
 		.then(resolve=>resolve.json()
 			.then(data=>{
 				list_data=data;
@@ -132,7 +132,7 @@ $('.pager>.btn_left').on('click',function(){
 		$('.bounced').css('display','flex');
 		//获取上传模块分类
 		let select_li=$('.select_ul li');
-		fetch(`${baseUrl}/muma.php/cat`)
+		fetchJsonp(`${baseUrl}/muma.php/cat`)
 			.then(resolve=>resolve.json()
 				.then(data=>{
 					select_data = data;

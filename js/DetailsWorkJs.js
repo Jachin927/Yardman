@@ -1,13 +1,13 @@
 //获取初始数据
 let url = new URL(window.location.href);
 let id = url.searchParams.get("id");
-let baseUrl = 'http://lostars.cn';
+let baseUrl = 'http://muma.webgz.cn/php';
 // 检测登录状态
 let token = localStorage.getItem('token');
 let show = false;
 
 if(token){
-	fetch(`${baseUrl}/muma.php/usr/logged?token=${token}`)
+	fetchJsonp(`${baseUrl}/muma.php/usr/logged?token=${token}`)
 	.then((response) => {
 		response.json().then((data) => {
 			if(data.code == 200){
@@ -58,7 +58,7 @@ $.each(watchList,(ind,val)=>{
 })
 let info = new Array();
 //获取个人信息
-fetch(`${baseUrl}/muma.php/pfl/dtl?id=${id}&isAdd=${isAdd}`)
+fetchJsonp(`${baseUrl}/muma.php/pfl/dtl?id=${id}&isAdd=${isAdd}`)
 	.then(resolve=>resolve.json()
 		.then(data=>{
 			info=data;
@@ -92,7 +92,7 @@ let comments_page;
 getcomments_data();
 function getcomments_data(page){
 	page=page||1
-	fetch(`${baseUrl}/muma.php/cmt/list?pid=${id}&page=${page}`)
+	fetchJsonp(`${baseUrl}/muma.php/cmt/list?pid=${id}&page=${page}`)
 		.then(resolve=>resolve.json()
 			.then(data=>{
 				// console.log(data)
@@ -173,8 +173,7 @@ if (isLike==1) {
 	$('.about_userLike').css({'border':'1px solid #dbdbdb','background':'#fff','color':'#999'}).html('<p><span></span>取消喜欢</p>')
 }
 $('.about_userLike').on('click',function(){
-	console.log(isLike)
-	fetch(`${baseUrl}/muma.php/like?pid=${id}&isLike=${isLike}`)
+	fetchJsonp(`${baseUrl}/muma.php/like?pid=${id}&isLike=${isLike}`)
 		.then(resolve=>resolve.json()
 			.then(data=>{
 				console.log(data)
