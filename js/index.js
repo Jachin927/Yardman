@@ -5,6 +5,19 @@ document.onreadystatechange = function(){
 	}
 }
 
+// 第一次访问再次刷新
+let first = true;
+if(sessionStorage.getItem('first')){
+	first = false;
+}else{
+	first = true;
+}
+
+if(first){
+	sessionStorage.setItem('first', false);
+	location.reload();
+}
+
 // 滚轮切换动画
 var module = 0;
 function mousewheel(){
